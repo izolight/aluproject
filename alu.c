@@ -89,6 +89,13 @@ void mu_memory_reset(){
   one_complement(char reg[]) --> NOT(reg)
 */
 void one_complement(char reg[]){
+    int i;
+    for (i = 0; i < REG_WIDTH; i++) {
+        if (reg[i] == '0')
+            reg[i] = '1';
+        else if (reg[i] == '1')
+            reg[i] = '0';
+    }
   // your code here
 }
 

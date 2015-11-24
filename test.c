@@ -8,8 +8,7 @@
 
 int main() {
     char test_reg[REG_WIDTH+1] = "00101101";
-    char one_comp_reg[REG_WIDTH+1];
-    memcpy(one_comp_reg, test_reg, REG_WIDTH+1);
+    char one_comp_reg[REG_WIDTH+1] = "00101101";
     one_complement(one_comp_reg);
     printf("Testing one complement\nin: \t%s\nout: \t%s\n", test_reg, one_comp_reg);
 
