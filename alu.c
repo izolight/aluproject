@@ -104,6 +104,21 @@ void one_complement(char reg[]){
   reg := K2(reg)
 */
 void two_complement(char reg[]){
+    one_complement(reg);
+    int i;
+    for (i = REG_WIDTH; i >= 0; i--) {
+        if (reg[i] == '0') {
+            for (i = i; i <= REG_WIDTH; i++) {
+                if (reg[i] == '0')
+                    reg[i] = '1';
+                else if (reg[i] == '1')
+                    reg[i] = '0';
+            }
+            break;
+        }
+        if (i == 0)
+            one_complement(reg);        
+    }
   // your code here
 }
 
