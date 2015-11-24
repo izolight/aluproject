@@ -1,0 +1,12 @@
+#!/bin/bash
+# gcc options
+# -I. search current directory for source files
+# -g debugging info
+# -c compile but not link. output is object code
+# -o outputfile
+
+gcc -I. -g -Wall -c register.c
+gcc -I. -g -Wall -c alu.c
+gcc -I. -g -Wall -c alu-main.c
+gcc -g -Wall -o alu register.o alu.o alu-main.o 
+
