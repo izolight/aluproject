@@ -20,7 +20,7 @@ int main() {
     char test_reg_add[REG_WIDTH+1] = "11011011";
     char test_accu[REG_WIDTH+1] = "00000000";
     char test_flags[REG_WIDTH+1] = "00000000";
-    printf("Testing ADD\nin reg_a:\t%s reg_b:\t%s\n", test_reg, test_reg_add);
+    printf("Testing ADD\nin\t reg_a:%s\t reg_b:%s\n", test_reg, test_reg_add);
     alu_op_ADD(test_reg, test_reg_add, test_accu, test_flags);
     return 0;
 }
