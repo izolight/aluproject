@@ -7,15 +7,12 @@
 #include "alu.h"
 
 int main() {
-    char initial_reg[REG_WIDTH+1] = "00101101";
-
-    char test_reg_1[REG_WIDTH+1] = "00101101";
-    one_complement(test_reg_1);
-    printf("Testing one complement\nin: \t%s\nout: \t%s\n", initial_reg, test_reg_1);
-
-    char test_reg_2[REG_WIDTH+1] = "00101101";
-    two_complement(test_reg_2);
-    printf("Testing two complement\nin: \t%s\nout: \t%s\n", initial_reg, test_reg_2);
-
+    char test_reg[REG_WIDTH+1] = "00101101";
+    printf("Testing one complement\nin: \t%s\n", test_reg);
+    one_complement(test_reg);
+    printf("out: \t%s\n", test_reg);
+    printf("Testing two complement\nin: \t%s\n", test_reg);
+    two_complement(test_reg);
+    printf("out: \t%s\n", test_reg);
     return 0;
 }
