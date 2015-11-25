@@ -24,6 +24,7 @@ void print_alu(char *rega, char *regb, char * accumulator, char flags[]);
 void zsflagging(char *flags, char *dummy);
 void one_complement(char* reg);
 void two_complement(char* reg);
+void alu_op_ADD(char *rega, char *regb, char *accumulator, char flags[]);
 
 #endif /* _ALU_H_ */
 
