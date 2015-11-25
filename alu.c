@@ -121,7 +121,37 @@ void two_complement(char reg[]){
   accumulator := rega + regb
 */
 void alu_op_ADD(char rega[], char regb[], char accumulator[], char flags[]){
-  // your code here
+    int i;
+    char carry = '0';
+    for (i = REG_WIDTH-1; i >= 0; i--) {
+        if (rega[i] == '0' && regb[i] == '0') {
+            if (carry == '0') {
+                accumulator[i] = '0';
+            } else {
+                accumulator[i] = '1';
+            }
+            carry = '0';
+        } else if ((rega[i] == '0' && regb[i] == '1') || (rega[i] == '1' && regb[i] == '0')) {
+            if (carry == '0') {
+                accumulator[i] = '1';
+                carry = '0';
+            } else {
+                accumulator[i] = '0';
+                carry = '1';
+            }
+        } else if (rega[i] == '1' && regb[i] == '1') {
+            if (carry == '0') {
+                accumulator[i] = '0';
+                carry = '1';
+            } else {
+                accumulator[i] = '1';
+                carry = '1';
+            }
+        }
+    }
+    apply_overflow_flag(rega, regb, accumulator, flags);
+    zsflagging(flags, accumulator);
+    flags[CFLAG] = carry;
 }
 
 //    #######  ######## 
