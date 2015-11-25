@@ -10,4 +10,4 @@ gcc -I. -g -Wall -c alu.c
 gcc -I. -g -Wall -c alu-main.c
 gcc -I. -g -Wall -c test.c
 gcc -g -Wall -o alu register.o alu.o alu-main.o 
-gcc -g -Wall -o test-alu register.o alu.o test.o
+gcc -g -Wall -o test-alu register.o alu.o test.o -lm
