@@ -79,14 +79,23 @@ int main(int argc, char *argv[]) {
     b = binary_to_dec(reg_b)-256;
     printf("out dec: \t%i\tout binary: \t%s\n", b, reg_b);
 
-    char *test_reg = reg_a;
-    char test_reg_add[REG_WIDTH+1] = "11000011";
-    char test_accu[REG_WIDTH+1] = "00000000";
-    char test_flags[REG_WIDTH+1] = "00000000";
+
     printf("Testing ADD\n");
-    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", test_reg, test_reg_add, test_accu, test_flags);
-    alu_op_ADD(test_reg, test_reg_add, test_accu, test_flags);
-    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", test_reg, test_reg_add, test_accu, test_flags);
+    a = base_a;
+    b = base_b;
+    char buff_a[REG_WIDTH+1];
+    char buff_b[REG_WIDTH+1];
+    reg_a = dec_to_binary(a, buff_a);
+    reg_b = dec_to_binary(b, buff_b);
+    char accu[REG_WIDTH+1] = "00000000";
+    char flags[REG_WIDTH+1] = "00000000";
+
+    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);
+    alu_op_ADD(reg_a, reg_b, accu, flags);
+    int accu_out = binary_to_dec(accu);
+    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("out accu: \t%i\n", accu_out);
 
     return 0;
 }
