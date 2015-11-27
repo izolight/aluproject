@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
         base_a = atoi(argv[1]);
         base_b = atoi(argv[2]);
     }
-    printf("ALU Testprogram\n");
+    printf("ALU Testprogram\n\n");
     char buffer[REG_WIDTH+1];
 
 
@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
     printf("in dec: \t%i\tin binary: \t%s\n", b, reg_b);
     one_complement(reg_b);
     b = binary_to_dec(reg_b);
-    printf("out dec: \t%i\tout binary: \t%s\n", b, reg_b);
+    printf("out dec: \t%i\tout binary: \t%s\n\n", b, reg_b);
 
 
     printf("Testing two complement\n");
@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
     printf("in dec: \t%i\tin binary: \t%s\n", b, reg_b);
     two_complement(reg_b);
     b = binary_to_dec(reg_b)-256;
-    printf("out dec: \t%i\tout binary: \t%s\n", b, reg_b);
+    printf("out dec: \t%i\tout binary: \t%s\n\n", b, reg_b);
 
 
     printf("Testing ADD\n");
@@ -95,7 +95,20 @@ int main(int argc, char *argv[]) {
     alu_op_ADD(reg_a, reg_b, accu, flags);
     int accu_out = binary_to_dec(accu);
     printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
-    printf("out accu: \t%i\n", accu_out);
+    printf("out accu: \t%i\n\n", accu_out);
 
+    printf("Testing OR\n");
+    a = base_a;
+    b = base_b;
+    reg_a = dec_to_binary(a, buff_a);
+    reg_b = dec_to_binary(b, buff_b);  
+    // TODO reset accu and flags
+
+    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);    
+    alu_op_OR(reg_a, reg_b, accu, flags);
+    accu_out = binary_to_dec(accu);
+    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("out accu: \t%i\n", accu_out);
     return 0;
 }
