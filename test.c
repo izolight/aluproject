@@ -102,13 +102,39 @@ int main(int argc, char *argv[]) {
     b = base_b;
     reg_a = dec_to_binary(a, buff_a);
     reg_b = dec_to_binary(b, buff_b);  
-    // TODO reset accu and flags
 
     printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
     printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);    
     alu_op_OR(reg_a, reg_b, accu, flags);
     accu_out = binary_to_dec(accu);
     printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
-    printf("out accu: \t%i\n", accu_out);
+    printf("out accu: \t%i\n\n", accu_out);
+
+    printf("Testing AND\n");
+    a = base_a;
+    b = base_b;
+    reg_a = dec_to_binary(a, buff_a);
+    reg_b = dec_to_binary(b, buff_b);  
+
+    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);    
+    alu_op_AND(reg_a, reg_b, accu, flags);
+    accu_out = binary_to_dec(accu);
+    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("out accu: \t%i\n\n", accu_out);
+
+    printf("Testing XOR\n");
+    a = base_a;
+    b = base_b;
+    reg_a = dec_to_binary(a, buff_a);
+    reg_b = dec_to_binary(b, buff_b);  
+
+    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);    
+    alu_op_XOR(reg_a, reg_b, accu, flags);
+    accu_out = binary_to_dec(accu);
+    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("out accu: \t%i\n\n", accu_out);
+
     return 0;
 }

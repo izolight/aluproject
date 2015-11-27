@@ -26,6 +26,7 @@ void one_complement(char* reg);
 void two_complement(char* reg);
 void alu_op_ADD(char *rega, char *regb, char *accumulator, char flags[]);
 void alu_op_OR(char *rega, char *regb, char *accumulator, char flags[]);
-
+void alu_op_AND(char *rega, char *regb, char *accumulator, char flags[]);
+void alu_op_XOR(char *rega, char *regb, char *accumulator, char flags[]);
 #endif /* _ALU_H_ */
 

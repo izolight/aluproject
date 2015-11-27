@@ -134,7 +134,6 @@ void alu_op_ADD(char rega[], char regb[], char accumulator[], char flags[]){
         } else if ((rega[i] == '0' && regb[i] == '1') || (rega[i] == '1' && regb[i] == '0')) {
             if (carry == '0') {
                 accumulator[i] = '1';
-                carry = '0';
             } else {
                 accumulator[i] = '0';
                 carry = '1';
@@ -145,7 +144,6 @@ void alu_op_ADD(char rega[], char regb[], char accumulator[], char flags[]){
                 carry = '1';
             } else {
                 accumulator[i] = '1';
-                carry = '1';
             }
         }
     }
@@ -252,13 +250,21 @@ void alu_op_ASL(char accu[], char regb[], char regouta[], char flags[]){
 
 
 void alu_op_AND(char rega[], char regb[], char accumulator[], char flags[]){
-  // your code here
+    int i;
+    for (i = 0; i < REG_WIDTH; i++) {
+        if (rega[i] == '1' && regb[i] == '1') {
+            accumulator[i] = '1';
+        } else {
+            accumulator[i] = '0';
+        }        
+    }
+    apply_overflow_flag(rega, regb, accumulator, flags);
+    zsflagging(flags, accumulator);
 }
 
 
 
 //   ########   #######  ##      
-//   ##     ## ##     ## ##      
 //   ##     ## ##     ## ##      
 //   ########  ##     ## ##      
 //   ##   ##   ##     ## ##      
@@ -312,7 +318,16 @@ void alu_op_ROL(char accu[], char regb[], char regc[], char flags[]){
   */
 
 void alu_op_XOR(char rega[], char regb[], char accumulator[], char flags[]){
-  // your code here
+    int i;
+    for (i = 0; i < REG_WIDTH; i++) {
+        if ((rega[i] == '1' && regb[i] == '1') || (rega[i] == '0' && regb[i] == '0')) {
+            accumulator[i] = '0';
+        } else { 
+            accumulator[i] = '1';
+        }
+    }
+    apply_overflow_flag(rega, regb, accumulator, flags);
+    zsflagging(flags, accumulator);
 }
 
 
