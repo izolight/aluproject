@@ -35,6 +35,92 @@ char *dec_to_binary(int dec, char out[]) {
     return out;
 }
 
+void test_one_complement(int num) {
+    char buf[REG_WIDTH+1];
+    char *reg = dec_to_binary(num, buf);
+    printf("in dec: \t%d\tin binary: \t%s\n", num, reg);
+    one_complement(reg);
+    num = binary_to_dec(reg);
+    printf("out dec: \t%d\t out binary: \t%s\n", num, reg);
+}
+
+void test_two_complement(int num) {
+    char buf[REG_WIDTH+1];
+    char *reg = dec_to_binary(num, buf);
+    printf("in dec: \t%i\tin binary: \t%s\n", num, reg);
+    two_complement(reg);
+    num = binary_to_dec(reg)-256;
+    printf("out dec: \t%i\tout binary: \t%s\n", num, reg);
+}
+
+void test_LOGIC(int a, int b, void (*f)(int)) {
+    
+}
+
+void test_ADD(int a, int b) {
+    char buff_a[REG_WIDTH+1];
+    char buff_b[REG_WIDTH+1];
+    char *reg_a = dec_to_binary(a, buff_a);
+    char *reg_b = dec_to_binary(b, buff_b);
+    char accu[REG_WIDTH+1] = "00000000";
+    char flags[REG_WIDTH+1] = "00000000";
+    
+    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);
+    alu_op_ADD(reg_a, reg_b, accu, flags);
+    int accu_out = binary_to_dec(accu);
+    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("out accu: \t%i\n", accu_out);
+}
+
+void test_OR(int a, int b) {
+    char buff_a[REG_WIDTH+1];
+    char buff_b[REG_WIDTH+1];
+    char *reg_a = dec_to_binary(a, buff_a);
+    char *reg_b = dec_to_binary(b, buff_b);
+    char accu[REG_WIDTH+1] = "00000000";
+    char flags[REG_WIDTH+1] = "00000000";
+
+    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);    
+    alu_op_OR(reg_a, reg_b, accu, flags);
+    int accu_out = binary_to_dec(accu);
+    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("out accu: \t%i\n", accu_out);    
+}
+  
+void test_AND(int a, int b) {
+    char buff_a[REG_WIDTH+1];
+    char buff_b[REG_WIDTH+1];
+    char *reg_a = dec_to_binary(a, buff_a);
+    char *reg_b = dec_to_binary(b, buff_b);
+    char accu[REG_WIDTH+1] = "00000000";
+    char flags[REG_WIDTH+1] = "00000000";
+
+    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);    
+    alu_op_AND(reg_a, reg_b, accu, flags);
+    int accu_out = binary_to_dec(accu);
+    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("out accu: \t%i\n", accu_out);
+}  
+
+void test_XOR(int a, int b) {
+    char buff_a[REG_WIDTH+1];
+    char buff_b[REG_WIDTH+1];
+    char *reg_a = dec_to_binary(a, buff_a);
+    char *reg_b = dec_to_binary(b, buff_b);
+    char accu[REG_WIDTH+1] = "00000000";
+    char flags[REG_WIDTH+1] = "00000000";
+
+    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);    
+    alu_op_XOR(reg_a, reg_b, accu, flags);
+    int accu_out = binary_to_dec(accu);
+    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
+    printf("out accu: \t%i\n", accu_out);
+}  
+
 int main(int argc, char *argv[]) {
     int base_a = 35;
     int base_b = 99;
@@ -42,99 +128,36 @@ int main(int argc, char *argv[]) {
         base_a = atoi(argv[1]);
         base_b = atoi(argv[2]);
     }
-    printf("ALU Testprogram\n\n");
-    char buffer[REG_WIDTH+1];
 
+    printf("ALU Testprogram\n");
+    printf("Test values are %d and %d\n", base_a, base_b);
+    printf("\n");
 
     printf("Testing one complement\n");
-
-    int a = base_a;
-    char *reg_a = dec_to_binary(a, buffer);
-    printf("in dec: \t%i\tin binary: \t%s\n", a, reg_a);
-    one_complement(reg_a);
-    a = binary_to_dec(reg_a);
-    printf("out dec: \t%i\tout binary: \t%s\n", a, reg_a);
-    
-    int b = base_b;
-    char *reg_b = dec_to_binary(b, buffer);
-    printf("in dec: \t%i\tin binary: \t%s\n", b, reg_b);
-    one_complement(reg_b);
-    b = binary_to_dec(reg_b);
-    printf("out dec: \t%i\tout binary: \t%s\n\n", b, reg_b);
-
+    test_one_complement(base_a);
+    test_one_complement(base_b);
+    printf("\n");
 
     printf("Testing two complement\n");
-
-    a = base_a;
-    reg_a = dec_to_binary(a, buffer),
-    printf("in dec: \t%i\tin binary: \t%s\n", a, reg_a);
-    two_complement(reg_a);
-    a = binary_to_dec(reg_a)-256;
-    printf("out dec: \t%i\tout binary: \t%s\n", a, reg_a);
-
-    b = base_b;
-    reg_b = dec_to_binary(b, buffer),
-    printf("in dec: \t%i\tin binary: \t%s\n", b, reg_b);
-    two_complement(reg_b);
-    b = binary_to_dec(reg_b)-256;
-    printf("out dec: \t%i\tout binary: \t%s\n\n", b, reg_b);
-
+    test_two_complement(base_a);
+    test_two_complement(base_b);
+    printf("\n");
 
     printf("Testing ADD\n");
-    a = base_a;
-    b = base_b;
-    char buff_a[REG_WIDTH+1];
-    char buff_b[REG_WIDTH+1];
-    reg_a = dec_to_binary(a, buff_a);
-    reg_b = dec_to_binary(b, buff_b);
-    char accu[REG_WIDTH+1] = "00000000";
-    char flags[REG_WIDTH+1] = "00000000";
-
-    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
-    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);
-    alu_op_ADD(reg_a, reg_b, accu, flags);
-    int accu_out = binary_to_dec(accu);
-    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
-    printf("out accu: \t%i\n\n", accu_out);
+    test_ADD(base_a, base_b);
+    printf("\n");
 
     printf("Testing OR\n");
-    a = base_a;
-    b = base_b;
-    reg_a = dec_to_binary(a, buff_a);
-    reg_b = dec_to_binary(b, buff_b);  
-
-    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
-    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);    
-    alu_op_OR(reg_a, reg_b, accu, flags);
-    accu_out = binary_to_dec(accu);
-    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
-    printf("out accu: \t%i\n\n", accu_out);
+    test_OR(base_a, base_b);
+    printf("\n");
 
     printf("Testing AND\n");
-    a = base_a;
-    b = base_b;
-    reg_a = dec_to_binary(a, buff_a);
-    reg_b = dec_to_binary(b, buff_b);  
-
-    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
-    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);    
-    alu_op_AND(reg_a, reg_b, accu, flags);
-    accu_out = binary_to_dec(accu);
-    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
-    printf("out accu: \t%i\n\n", accu_out);
+    test_AND(base_a, base_b);
+    printf("\n"),
 
     printf("Testing XOR\n");
-    a = base_a;
-    b = base_b;
-    reg_a = dec_to_binary(a, buff_a);
-    reg_b = dec_to_binary(b, buff_b);  
-
-    printf("in\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
-    printf("in dec_a: \t%i\tin dec_b: \t%i\n", a, b);    
-    alu_op_XOR(reg_a, reg_b, accu, flags);
-    accu_out = binary_to_dec(accu);
-    printf("out\t reg_a:%s\t reg_b:%s\t accu:%s\t flags:%s\n", reg_a, reg_b, accu, flags);
-    printf("out accu: \t%i\n\n", accu_out);
+    test_XOR(base_a, base_b);
+    printf("\n");
 
     return 0;
 }
