@@ -14,7 +14,7 @@
    
    GPL applies
 
-   -->> YOUR FULL NAME HERE  <<--
+    Gabor Tanz
 */
 
 #include <stdio.h>
@@ -221,8 +221,15 @@ void alu_op_OR(char rega[], char regb[], char accumulator[], char flags[]){
 //
 //
 
-void alu_op_ASL(char accu[], char regb[], char regouta[], char flags[]){
-  // your code here
+// input from rega(regb) is shifted by one bit, result in accumulator
+void alu_op_ASL(char rega[], char regb[], char accu[], char flags[]){
+    int i;
+    accu[7] = '0';
+    for (i = REG_WIDTH-1; i > 0; i--) {
+        accu[i-1] = rega[i];
+    }
+    flags[CFLAG] = rega[0];
+    zsflagging(flags, accu);
 }
 
 
@@ -297,9 +304,15 @@ void alu_op_AND(char rega[], char regb[], char accumulator[], char flags[]){
 //  *  
 //
 
-void alu_op_ROL(char accu[], char regb[], char regc[], char flags[]){
+void alu_op_ROL(char rega[], char regb[], char accu[], char flags[]){
+    int i;
+    accu[7] = flags[CFLAG];
+    for (i = REG_WIDTH-1; i > 0; i--) {
+        accu[i-1] = rega[i];
+    }
+    flags[CFLAG] = rega[0];
+    zsflagging(flags, accu);
 }
-
 
 /*
   op:      EOR
@@ -353,8 +366,14 @@ void alu_op_XOR(char rega[], char regb[], char accumulator[], char flags[]){
 //  *       P.Z = (B==0) ? 1:0
 //  *
 //
-void alu_op_LSR(char accu[], char regb[], char regc[], char flags[]){
-  // your code here
+void alu_op_LSR(char rega[], char regb[], char accu[], char flags[]){
+    int i;
+    accu[0] = '0';
+    for (i = 0; i < REG_WIDTH-1; i++) {
+        accu[i+1] = rega[i];
+    }
+    flags[CFLAG] = rega[7];
+    zsflagging(flags, accu);
 }
 
 //      ###    ########   ###### 
