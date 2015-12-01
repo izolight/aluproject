@@ -66,21 +66,37 @@ void alu_parse_line(char *cmd_line){
     printf("%s %s %s\n", opcode, operand1, operand2);
     break;
   case 2:
-    if(!strcmp(opcode,"neg_a")){
+    if(!strcmp(opcode,"ror")){
+      ldhex2register(operand1, rega);
+      alu(ALU_OP_ROR, rega, regb, accumulator, flags);
+    }
+    if(!strcmp(opcode,"rol")){
+      ldhex2register(operand1, rega);
+      alu(ALU_OP_ROL, rega, regb, accumulator, flags);
+    }
+    if(!strcmp(opcode,"asl")){
+      ldhex2register(operand1, rega);
+      alu(ALU_OP_ASL, rega, regb, accumulator, flags);
+    }
+    if(!strcmp(opcode,"lsr")){
+      ldhex2register(operand1, rega);
+      alu(ALU_OP_LSR, rega, regb, accumulator, flags);
+    }
+    if(!strcmp(opcode,"neg")){
       ldhex2register(operand1, rega);
       alu(ALU_OP_NEG, rega, regb, accumulator, flags);
     }
-    if(!strcmp(opcode,"neg_b")){
-      ldhex2register(operand1, regb);
-      alu(ALU_OP_NEG, rega, regb, accumulator, flags);
-    }
-    if(!strcmp(opcode,"not_a")){
+    if(!strcmp(opcode,"not")){
       ldhex2register(operand1, rega);
       alu(ALU_OP_NOT, rega, regb, accumulator, flags);
     }
-    if(!strcmp(opcode,"not_b")){
-      ldhex2register(operand1, regb);
-      alu(ALU_OP_NOT, rega, regb, accumulator, flags);
+    if(!strcmp(opcode,"inc")){
+      ldhex2register(operand1, rega);
+      alu(ALU_OP_INC, rega, regb, accumulator, flags);
+    }
+    if(!strcmp(opcode,"dec")){
+      ldhex2register(operand1, rega);
+      alu(ALU_OP_DEC, rega, regb, accumulator, flags);
     }
     printf("%s %s\n", opcode, operand1);
     break;

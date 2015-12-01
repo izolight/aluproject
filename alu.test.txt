@@ -1,0 +1,112 @@
+reset
+or 00 ff
+or aa 55
+or 12 8a
+or ff 00
+or 55 aa
+and 00 ff
+and ff 00
+and 55 aa
+and aa 55
+add 00 00
+add ff 01
+add 01 ff
+add 00 ff
+add ff 00
+add 1a 8b
+clc
+asl ff
+clc
+asl 00
+sec
+asl ff
+sec
+asl 00
+clc
+asl aa
+clc
+asl 55
+sec
+asl aa
+sec
+asl 55
+reset
+clc
+lsr ff
+clc
+lsr 00
+sec
+lsr ff
+sec
+lsr 00
+clc
+lsr aa
+clc
+lsr 55
+sec
+lsr aa
+sec
+lsr 55
+reset
+clc
+rol ff
+clc
+rol 00
+sec
+rol ff
+sec
+rol 00
+clc
+rol aa
+clc
+rol 55
+sec
+rol aa
+sec
+rol 55
+reset
+clc
+ror ff
+clc
+ror 00
+sec
+ror ff
+sec
+ror 00
+clc
+ror aa
+clc
+ror 55
+sec
+ror aa
+sec
+ror 55
+reset
+dec
+sub ff 00
+sub 00 ff
+sub a5 5a
+sub 01 00
+sub 01 01
+clc
+sbc ff 00
+sec
+sbc ff 00
+clc
+sbc 00 ff
+sec
+sbc 00 ff
+clc
+sbc a5 5a
+sec
+sbc a5 5a
+clc
+sbc 01 00
+sec
+sbc 01 00
+clc
+sbc 01 01
+inc
+reset
+inc
+
