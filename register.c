@@ -173,6 +173,7 @@ void ldhex2register(char* hexcode, char* reg){
 			ldhex2regnibble(*(hexcode+3), reg+12);
 			break;
 	}
+    reg[REG_WIDTH] = 0x0;
 }
 
 /*

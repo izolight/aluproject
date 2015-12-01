@@ -100,5 +100,19 @@ int main(int argc, char *argv[]) {
     printf("Testing XOR\n");
     test_LOGIC(a, b, alu_op_XOR);
 
+    printf("Testing ASL\n");
+    test_LOGIC(a, b, alu_op_ASL);
+
+    printf("Testing ROL\n");
+    test_LOGIC(a, b, alu_op_ROL);
+
+    printf("Testing LSR\n");
+    test_LOGIC(a, b, alu_op_LSR);
+
+    printf("Testing ADC\n");
+    test_LOGIC(a, b, alu_op_ADC);
+
+    printf("Testing ROR\n");
+    test_LOGIC(a, b, alu_op_ROR);
     return 0;
 }

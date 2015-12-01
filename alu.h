@@ -28,5 +28,9 @@ void alu_op_ADD(char *rega, char *regb, char *accumulator, char flags[]);
 void alu_op_OR(char *rega, char *regb, char *accumulator, char flags[]);
 void alu_op_AND(char *rega, char *regb, char *accumulator, char flags[]);
 void alu_op_XOR(char *rega, char *regb, char *accumulator, char flags[]);
+void alu_op_ASL(char *rega, char *regb, char *accumulator, char flags[]);
+void alu_op_LSR(char *rega, char *regb, char *accumulator, char flags[]);
+void alu_op_ROR(char *rega, char *regb, char *accumulator, char flags[]);
+void alu_op_ROL(char *rega, char *regb, char *accumulator, char flags[]);
+void alu_op_ADC(char *rega, char *regb, char *accumulator, char flags[]);
 #endif /* _ALU_H_ */
-
