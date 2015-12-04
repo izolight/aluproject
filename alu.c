@@ -221,14 +221,10 @@ void alu_op_OR(char rega[], char regb[], char accumulator[], char flags[]){
 //
 //
 
-// input from rega(regb) is shifted by one bit, result in accumulator
 void alu_op_ASL(char rega[], char regb[], char accu[], char flags[]){
     int i;
-    char temp[REG_WIDTH+1];
-    for (i = 0; i < REG_WIDTH; i++) {
-        temp[i] = rega[i];
-    }
-    temp[REG_WIDTH] = 0x0;
+    char temp[REG_WIDTH];
+    cp_register(rega, temp);
 
     for (i = REG_WIDTH-1; i > 0; i--) {
         rega[i-1] = temp[i];
@@ -312,11 +308,8 @@ void alu_op_AND(char rega[], char regb[], char accumulator[], char flags[]){
 
 void alu_op_ROL(char rega[], char regb[], char accu[], char flags[]){
     int i;
-    char temp[REG_WIDTH+1];
-    for (i = 0; i < REG_WIDTH; i++) {
-        temp[i] = rega[i];
-    }
-    temp[REG_WIDTH] = 0x0;
+    char temp[REG_WIDTH];
+    cp_register(rega, temp);
 
     for (i = REG_WIDTH-1; i > 0; i--) {
         rega[i-1] = temp[i];
@@ -380,11 +373,8 @@ void alu_op_XOR(char rega[], char regb[], char accumulator[], char flags[]){
 //
 void alu_op_LSR(char rega[], char regb[], char accu[], char flags[]){
     int i;
-    char temp[REG_WIDTH+1];
-    for (i = 0; i < REG_WIDTH; i++) {
-        temp[i] = rega[i];
-    }
-    temp[REG_WIDTH] = 0x0;
+    char temp[REG_WIDTH];
+    cp_register(rega, temp);
 
     rega[0] = '0';
     for (i = 0; i < REG_WIDTH-1; i++) {
@@ -495,11 +485,8 @@ void alu_op_ADC(char rega[], char regb[], char accumulator[], char flags[]){
 //
 void alu_op_ROR(char rega[], char regb[], char accu[], char flags[]){
     int i;
-    char temp[REG_WIDTH+1];
-    for (i = 0; i < REG_WIDTH; i++) {
-        temp[i] = rega[i];
-    }
-    temp[REG_WIDTH] = 0x0;
+    char temp[REG_WIDTH];
+    cp_register(rega, temp);
 
     rega[0] = flags[CFLAG];
     for (i = 0; i < REG_WIDTH-1; i++) {
@@ -540,7 +527,6 @@ void alu_op_DEC(char rega[], char regb[], char accu[], char flags[]){
     if (rega[i] >= 0) {
         rega[i] = '0';    
     } 
-  // your code here
 }
 
 void alu_op_NEG(char rega[], char regb[], char accumulator[], char flags[]){
@@ -551,8 +537,10 @@ void alu_op_NOT(char rega[], char regb[], char accumulator[], char flags[]){
   // empty, ignore
 }
 void alu_op_SUB(char rega[], char regb[], char accumulator[], char flags[]){
-    two_complement(regb);
-    alu_op_ADD(rega, regb, accumulator, flags);
+    char temp[REG_WIDTH];
+    cp_register(regb, temp);    
+    two_complement(temp);
+    alu_op_ADD(rega, temp, accumulator, flags);
 }
 
 //    ######  ########   ###### 
@@ -594,7 +582,10 @@ void alu_op_SUB(char rega[], char regb[], char accumulator[], char flags[]){
 */
 
 void alu_op_SBC(char rega[], char regb[], char accumulator[], char flags[]){
-  // your code here
+    char temp[REG_WIDTH];
+    cp_register(regb, temp);
+    two_complement(temp);
+    alu_op_ADC(rega, temp, accumulator, flags);
 }
 
 //   #### ##    ##  ###### 
