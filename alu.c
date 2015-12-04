@@ -224,7 +224,6 @@ void alu_op_OR(char rega[], char regb[], char accumulator[], char flags[]){
 void alu_op_ASL(char rega[], char regb[], char accu[], char flags[]){
     int i;
     char temp[REG_WIDTH];
-    cp_register(rega, temp);
 
     for (i = REG_WIDTH-1; i > 0; i--) {
         rega[i-1] = temp[i];
@@ -310,7 +309,7 @@ void alu_op_ROL(char rega[], char regb[], char accu[], char flags[]){
     int i;
     char temp[REG_WIDTH];
     cp_register(rega, temp);
-
+    
     for (i = REG_WIDTH-1; i > 0; i--) {
         rega[i-1] = temp[i];
     }
